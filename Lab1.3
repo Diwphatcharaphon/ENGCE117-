@@ -1,1 +1,25 @@
+#include <stdio.h>
+
+int main() {
+    int a, b, op, res;
+
+    printf("Enter first number: ");
+    scanf("%d", &a);
+    printf("Enter second number: ");
+    scanf("%d", &b);
+    printf("Enter operation code (1:+ 2:- 3:* 4:/): ");
+    scanf("%d", &op);
+
+    if (op == 1) res = a + b;
+    else if (op == 2) res = a - b;
+    else if (op == 3) res = a * b;
+    else if (op == 4 && b != 0) res = a / b;
+    else {
+        printf("Invalid Operation");
+        return 0;
+    }
+
+    printf("Result: %d", res);
+    return 0;
+}
 
