@@ -1,20 +1,17 @@
 #include <stdio.h>
-
 int main() {
-    int D;
-
-    if (scanf("%d", &D) != 1)
+    int G;
+    if (scanf("%d", &G) != 1) {
         return 1;
-
-    if (D > 0) {
+    }
+    if (G > 0) {
         int count = 0;
-        while (count < D) {
-            puts("Hello DIW");
+        while (count < G) {
+            puts("Hello my D");
             count++;
         }
     } else {
-        printf("Error");
+        printf("Error\n");
     }
-
     return 0;
 }
