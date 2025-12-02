@@ -1,1 +1,18 @@
+#include <stdio.h>
+
+int main() {
+    int limit;
+    int total = 0;
+
+    if (scanf("%d", &limit) != 1)
+        return 1;
+
+  
+    for (int n = 0; n < limit; n++) {
+        total += n;
+    }
+
+    printf("%d\n", total);
+    return 0;
+}
 
