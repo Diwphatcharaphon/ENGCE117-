@@ -2,12 +2,10 @@
 
 int main() {
     int score;
-    
+    printf("Enter your score: ");   
     if (scanf("%d", &score) != 1)
         return 1;
-
     char grade;
-
     if (score >= 80)
         grade = 'A';
     else if (score >= 70)
@@ -18,8 +16,6 @@ int main() {
         grade = 'D';
     else
         grade = 'F';
-
     printf("Grade %c", grade);
-
     return 0;
 }
