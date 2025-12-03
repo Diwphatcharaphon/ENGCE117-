@@ -1,34 +1,37 @@
 #include <stdio.h>
 
 int main() {
-    int value;
-    int sum_even = 0;
-    int sum_odd = 0;
-    int status;
+    int inputNumber = 0;
+    int sumEven = 0;
+    int sumOdd = 0;
+    int readStatus = 0;
 
-    /* อ่านค่าตัวแรก */
-    status = scanf("%d", &value);
-    if (status != 1) {
+    /* รับค่าตัวเลขเริ่มต้น */
+    readStatus = scanf("%d", &inputNumber);
+    if (readStatus != 1) {
         return 1;
     }
-    /* ทำงานจนกว่าจะเจอ 0 */
-    while (value != 0) {
 
-        /* ตรวจสอบเลขคู่หรือเลขคี่ */
-        if (value % 2 == 0) {
-            sum_even = sum_even + value;
+    /* วนซ้ำจนกว่าจะป้อน 0 */
+    while (inputNumber != 0) {
+
+        /* เลขคู่หรือเลขคี่ */
+        if ((inputNumber % 2) == 0) {
+            sumEven = sumEven + inputNumber;
         } else {
-            sum_odd = sum_odd + value;
+            sumOdd = sumOdd + inputNumber;
         }
 
-        status = scanf("%d", &value);
-        if (status != 1) {
-            break;
+        /* อ่านค่าถัดไป */
+        readStatus = scanf("%d", &inputNumber);
+        if (readStatus != 1) {
+            return 1;
         }
     }
 
-    printf("Sum of even numbers: %d\n", sum_even);
-    printf("Sum of odd numbers: %d\n", sum_odd);
+    /* แสดงผลรวม */
+    printf("Even total = %d\n", sumEven);
+    printf("Odd total  = %d\n", sumOdd);
 
     return 0;
 }
