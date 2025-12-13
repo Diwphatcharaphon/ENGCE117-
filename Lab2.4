@@ -1,29 +1,37 @@
 #include <stdio.h>
-void explode(char str1[], char splitter, char str2[][10], int *count) {
-    int i = 0, j = 0;
-    *count = 0;
-    while (str1[i] != '\0') {
-        if (str1[i] == splitter) {
-            str2[*count][j] = '\0';   // จบคำ
-            (*count)++;               // เพิ่มจำนวนคำ
-            j = 0;                    // เริ่มคำใหม่
-        } else {
-            str2[*count][j] = str1[i];
+void explodeString(char source[], char delimiter, char result[][10], int *wordCount)
+{
+    int i = 0;
+    int j = 0;
+    *wordCount = 0;
+    while (source[i] != '\0')
+    {
+        if (source[i] == delimiter)
+        {
+            result[*wordCount][j] = '\0';
+            (*wordCount)++;
+            j = 0;
+        }
+        else
+        {
+            result[*wordCount][j] = source[i];
             j++;
         }
         i++;
     }
-    // ปิดคำสุดท้าย
-    str2[*count][j] = '\0';
-    (*count)++;
+    result[*wordCount][j] = '\0';
+    (*wordCount)++;
 }
-int main() {
-    char out[20][10];
-    int num;
-    explode("SA/WAT/DEE/KUB/POMM", '/', out, &num);
-    for (int i = 0; i < num; i++) {
-        printf("str2[%d] = %s\n", i, out[i]);
+int main()
+{
+    char output[20][10];
+    int count = 0;
+    int i;
+    explodeString("SA/WAT/DEE/KUB/POMM", '/', output, &count);
+    for (i = 0; i < count; i++)
+    {
+        printf("str2[%d] = %s\n", i, output[i]);
     }
-    printf("count = %d\n", num);
+    printf("count = %d\n", count);
     return 0;
 }
