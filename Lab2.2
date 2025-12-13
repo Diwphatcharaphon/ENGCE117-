@@ -1,0 +1,36 @@
+#include <stdio.h>
+void reverseString(char strInput[], char strResult[])
+{
+    int length = 0;
+    int i;
+    for (i = 0; strInput[i] != '\0'; i++)
+    {
+        length++;
+    }
+    for (i = 0; i < length; i++)
+    {
+        strResult[i] = strInput[length - 1 - i];
+    }
+    strResult[length] = '\0';
+}
+int main()
+{
+    char inputText[50];
+    char reversedText[50];
+    int i;
+    if (fgets(inputText, sizeof(inputText), stdin) == NULL)
+    {
+        return 1;
+    }
+    for (i = 0; inputText[i] != '\0'; i++)
+    {
+        if (inputText[i] == '\n')
+        {
+            inputText[i] = '\0';
+            break;
+        }
+    }
+    reverseString(inputText, reversedText);
+    printf("%s\n", reversedText);
+    return 0;
+}
