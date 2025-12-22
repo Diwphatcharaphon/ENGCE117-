@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct student
+{
+    char name[20];
+    int age;
+    char sex;
+    float gpa;
+};
+struct student (*GetStudent(int *room))[10]
+{
+    int i;
+    int j;
+    struct student (*child)[10];
+    printf("Enter number of rooms: ");
+    scanf("%d", room);
+    if (*room <= 0)
+    {
+        return NULL;
+    }
+    child = malloc((*room) * sizeof(struct student[10]));
+
+    if (child == NULL)
+    {
+        return NULL;
+    }
+
+    for (i = 0; i < *room; i++)
+    {
+        printf("\nRoom %d\n", i + 1);
+
+        for (j = 0; j < 10; j++)
+        {
+            printf("Student %d\n", j + 1);
+
+            printf("Name: ");
+            scanf("%s", child[i][j].name);
+
+            printf("Age: ");
+            scanf("%d", &child[i][j].age);
+
+            printf("Sex (M/F): ");
+            scanf(" %c", &child[i][j].sex);
+
+            printf("GPA: ");
+            scanf("%f", &child[i][j].gpa);
+        }
+    }
+
+    return child;
+}
+int main()
+{
+    struct student (*children)[10];
+    int group;
+
+    children = GetStudent(&group);
+
+    if (children == NULL)
+    {
+        printf("Error: Cannot allocate memory or invalid input.\n");
+        return 1;
+    }    
+    printf("\nFirst student of room 1: %s\n", children[0][0].name);
+    free(children);
+    return 0;
+}
