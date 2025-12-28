@@ -1,1 +1,25 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int N, i = 0;
+
+    if (scanf("%d", &N) != 1)
+        return 1;
+
+    if (N <= 0)
+    {
+        printf("Error");
+    }
+    else
+    {
+        while (i < N)
+        {
+            printf("HelloGUYS!!!!\n");
+            i++;
+        }
+    }
+
+    return 0;
+}
 
