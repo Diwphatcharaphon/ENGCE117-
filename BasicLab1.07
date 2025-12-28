@@ -1,1 +1,30 @@
+#include <stdio.h>
 
+int main(void)
+{
+    int customerType;
+    float consumption, rate, totalBill;
+
+    if (scanf("%d %f", &customerType, &consumption) != 2)
+        return 1;
+
+    switch (customerType)
+    {
+        case 1:
+            rate = (consumption <= 100) ? 3.0 : 4.0;
+            break;
+
+        case 2:
+            rate = (consumption <= 500) ? 5.0 : 6.5;
+            break;
+
+        default:
+            printf("Invalid Customer Type\n");
+            return 0;
+    }
+
+    totalBill = consumption * rate;
+    printf("%.2f\n", totalBill);
+
+    return 0;
+}
