@@ -1,1 +1,46 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int score;
+    int gradeCount[5] = {0};   // 0:A, 1:B, 2:C, 3:D, 4:F
+
+    if (scanf("%d", &score) != 1)
+        return 1;
+
+    do
+    {
+        switch (score / 10)
+        {
+            case 10:
+            case 9:
+            case 8:
+                gradeCount[0]++;
+                break;
+            case 7:
+                gradeCount[1]++;
+                break;
+            case 6:
+                gradeCount[2]++;
+                break;
+            case 5:
+                gradeCount[3]++;
+                break;
+            default:
+                gradeCount[4]++;
+        }
+
+        if (scanf("%d", &score) != 1)
+            break;
+
+    } while (score != -1);
+
+    printf("Grade A Count: %d\n", gradeCount[0]);
+    printf("Grade B Count: %d\n", gradeCount[1]);
+    printf("Grade C Count: %d\n", gradeCount[2]);
+    printf("Grade D Count: %d\n", gradeCount[3]);
+    printf("Grade F Count: %d\n", gradeCount[4]);
+
+    return 0;
+}
 
