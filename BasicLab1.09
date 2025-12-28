@@ -1,1 +1,33 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int zoneCode;
+    float weight, totalCost;
+
+    if (scanf("%d %f", &zoneCode, &weight) != 2)
+        return 1;
+
+    if (zoneCode == 1)
+    {
+        totalCost = (weight <= 5) ? 50.0 : 80.0;
+        printf("%.2f\n", totalCost);
+    }
+    else if (zoneCode == 2)
+    {
+        totalCost = (weight <= 10) ? 150.0 : 250.0;
+        printf("%.2f\n", totalCost);
+    }
+    else if (zoneCode == 3)
+    {
+        totalCost = 500.0;
+        printf("%.2f\n", totalCost);
+    }
+    else
+    {
+        printf("Invalid Zone Code\n");
+    }
+
+    return 0;
+}
 
