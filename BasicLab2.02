@@ -1,1 +1,28 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int N, count = 0, quantity;
+    float unitPrice, itemCost, grandTotal = 0.0;
+
+    if (scanf("%d", &N) != 1)
+        return 1;
+
+    while (count < N)
+    {
+        if (scanf("%f %d", &unitPrice, &quantity) != 2)
+            return 1;
+
+        itemCost = unitPrice * quantity;
+
+        if (unitPrice >= 1000.0)
+            itemCost *= 0.90;   // ลด 10%
+
+        grandTotal += itemCost;
+        count++;
+    }
+
+    printf("Grand Total: %.2f\n", grandTotal);
+    return 0;
+}
 
