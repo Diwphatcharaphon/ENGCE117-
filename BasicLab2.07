@@ -1,1 +1,40 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int N;
+    int i = 1;
+    int countFizzBuzz = 0, countFizz = 0, countBuzz = 0, countOther = 0;
+
+    if (scanf("%d", &N) != 1)
+        return 1;
+
+    while (i <= N)
+    {
+        if (i % 3 == 0 && i % 5 == 0)
+        {
+            countFizzBuzz++;
+        }
+        else if (i % 5 == 0)
+        {
+            countFizz++;
+        }
+        else if (i % 3 == 0)
+        {
+            countBuzz++;
+        }
+        else
+        {
+            countOther++;
+        }
+        i++;
+    }
+
+    printf("Count FizzBuzz (by 15): %d\n", countFizzBuzz);
+    printf("Count Fizz : %d\n", countFizz);
+    printf("Count Buzz : %d\n", countBuzz);
+    printf("Count Other: %d\n", countOther);
+
+    return 0;
+}
 
