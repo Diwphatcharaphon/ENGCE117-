@@ -1,1 +1,33 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int planCode;
+    float usage, totalBill = 0.0;
+
+    if (scanf("%d %f", &planCode, &usage) != 2)
+        return 1;
+
+    switch (planCode)
+    {
+        case 1:   // Basic Plan
+            totalBill = 299.0;
+            if (usage > 10)
+                totalBill += (usage - 10) * 10.0;
+            break;
+
+        case 2:   // Premium Plan
+            totalBill = 599.0;
+            if (usage > 20)
+                totalBill += 50.0 + (usage - 20) * 5.0;
+            break;
+
+        default:
+            printf("Invalid Plan Code\n");
+            return 0;
+    }
+
+    printf("%.2f\n", totalBill);
+    return 0;
+}
 
