@@ -1,1 +1,37 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int totalMonths, month = 1, successCount = 0;
+    float deposit, monthSum;
+
+    if (scanf("%d", &totalMonths) != 1)
+        return 1;
+
+    while (month <= totalMonths)
+    {
+        monthSum = 0.0;
+
+        if (scanf("%f", &deposit) != 1)
+            break;
+
+        do
+        {
+            if (deposit == 0.0)
+                break;
+
+            monthSum += deposit;
+
+        } while (scanf("%f", &deposit) == 1);
+
+        if (monthSum >= 500.0)
+            successCount++;
+
+        printf("Month %d Total: %.2f\n", month, monthSum);
+        month++;
+    }
+
+    printf("Success Count: %d\n", successCount);
+    return 0;
+}
 
