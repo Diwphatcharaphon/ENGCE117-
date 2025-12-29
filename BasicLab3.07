@@ -1,52 +1,79 @@
 #include <stdio.h>
 
-struct SalesRecord {
-    char name[50];
+struct SalesRecord
+{
     float target;
     float actual;
 };
 
-int main() {
-    int N, i;
-    float grandTotalCommission = 0.0;
+float calculateCommission(struct SalesRecord rec)
+{
+    float commission;
+    float ratio;
 
-    /* รับจำนวนรายการ */
-    if (scanf("%d", &N) != 1) {
+    commission = rec.actual * 0.10;
+    ratio = rec.actual / rec.target;
+
+    if (ratio >= 1.20)
+    {
+        commission = commission + 200.0;
+    }
+
+    if (ratio >= 1.00 && ratio < 1.20)
+    {
+        commission = commission + 50.0;
+    }
+
+    if (ratio < 0.90)
+    {
+        commission = commission - 100.0;
+    }
+
+    return commission;
+}
+
+int main(void)
+{
+    int count;
+    int index;
+    float totalCommission;
+    struct SalesRecord current;
+    char name[50];
+
+    totalCommission = 0.0;
+
+    if (scanf("%d", &count) != 1)
+    {
         return 1;
     }
 
-    struct SalesRecord records[N];
+    if (count <= 0)
+    {
+        printf("Error\n");
+        return 0;
+    }
 
-    /* วนรับข้อมูลและคำนวณโบนัส */
-    for (i = 0; i < N; i++) {
-        float baseCommission;
-
-        if (scanf("%f %f %s",
-                  &records[i].target,
-                  &records[i].actual,
-                  records[i].name) != 3) {
+    for (index = 0; index < count; index++)
+    {
+        if (scanf("%f", &current.target) != 1)
+        {
             return 1;
         }
 
-        /* ค่าคอมมิชชันพื้นฐาน 10% */
-        baseCommission = records[i].actual * 0.10;
-
-        /* ปรับโบนัส/ค่าปรับ */
-        if (records[i].actual >= records[i].target * 1.20) {
-            baseCommission += 200.0;   /* โบนัส Tier 2 */
-        } else if (records[i].actual >= records[i].target) {
-            baseCommission += 50.0;    /* โบนัส Tier 1 */
-        } else if (records[i].actual < records[i].target * 0.90) {
-            baseCommission -= 100.0;   /* ค่าปรับ */
+        if (scanf("%f", &current.actual) != 1)
+        {
+            return 1;
         }
-        /* ช่วง 90%–99.9% ไม่เพิ่มไม่ลด */
 
-        grandTotalCommission += baseCommission;
+        if (scanf("%s", name) != 1)
+        {
+            return 1;
+        }
+
+        totalCommission = totalCommission + calculateCommission(current);
     }
 
-
-    printf("Grand Total Commission: %.2f\n", grandTotalCommission);
+    printf("Grand Total Commission: %.2f\n", totalCommission);
 
     return 0;
 }
-
