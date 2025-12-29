@@ -1,43 +1,48 @@
 #include <stdio.h>
 
-struct Employee {
-    int id;
-    int gross_salary;
-    int bonus;
-    int total_income;
+struct Employee
+{
+    int id;            
+    int base_salary;   
+    int bonus;        
 };
 
-int calculate_net_salary(int total_income) {
-    int tax;
+int computeNetIncome(int income)
+{
+    int tax_amount;
 
-    if (total_income > 30000) {
-        tax = (int)(total_income * 0.10);   // หักภาษี 10%
-    } else {
-        tax = (int)(total_income * 0.05);   // หักภาษี 5%
+    if (income > 30000)
+    {
+        tax_amount = income * 10 / 100;   
+    }
+    else
+    {
+        tax_amount = income * 5 / 100;    
     }
 
-    return total_income - tax;
+    return income - tax_amount;
 }
 
-int main() {
-    struct Employee emp;
-    int net_salary;
+int main()
+{
+    struct Employee worker;   
+    int total_income;         
+    int net_income;          
 
-    scanf("%d", &emp.id);
-    scanf("%d", &emp.gross_salary);
-    scanf("%d", &emp.bonus);
+    scanf("%d", &worker.id);
+    scanf("%d", &worker.base_salary);
+    scanf("%d", &worker.bonus);
 
-    emp.total_income = emp.gross_salary + emp.bonus;
+    total_income = worker.base_salary + worker.bonus;
 
-    net_salary = calculate_net_salary(emp.total_income);
+    net_income = computeNetIncome(total_income);
 
     printf("--- EMPLOYEE SALARY REPORT ---\n");
-    printf("ID: %d\n", emp.id);
-    printf("Gross Salary: %d\n", emp.gross_salary);
-    printf("Bonus: %d\n", emp.bonus);
-    printf("Total Income: %d\n", emp.total_income);
-    printf("Net Salary: %d\n", net_salary);
+    printf("ID: %d\n", worker.id);
+    printf("Base Salary: %d\n", worker.base_salary);
+    printf("Bonus: %d\n", worker.bonus);
+    printf("Total Income: %d\n", total_income);
+    printf("Net Income: %d\n", net_income);
 
-    return 0;
+    return 0;   
 }
-
