@@ -1,41 +1,47 @@
 #include <stdio.h>
 
-#define SIZE 5
+#define SIZE 5   
 
-/* Function สำหรับคำนวณผลรวม */
-int calculate_sum(int arr[], int size) {
-    int sum = 0;
-    int i;
+int sumArray(int data[], int length)
+{
+    int result = 0;   
+    int index;
 
-    for (i = 0; i < size; i++) {
-        sum += arr[i];
+    for (index = 0; index < length; index++)
+    {
+        result = result + data[index];
     }
 
-    return sum;
+    return result;    
 }
 
-int main() {
-    int numbers[SIZE];
-    int total;
-    float avg;
+int main()
+{
+    int values[SIZE];     
+    int sum;            
+    float average;        
     int i;
 
-    for (i = 0; i < SIZE; i++) {
-        scanf("%d", &numbers[i]);
+    for (i = 0; i < SIZE; i++)
+    {
+        scanf("%d", &values[i]);
     }
 
-    total = calculate_sum(numbers, SIZE);
-    avg = (float) total / SIZE;
+    sum = sumArray(values, SIZE);
+
+    average = (float)sum / SIZE;
 
     printf("--- ARRAY AVERAGE REPORT ---\n");
+
     printf("Recorded Numbers: ");
-    for (i = 0; i < SIZE; i++) {
-        printf("%d ", numbers[i]);
+    for (i = 0; i < SIZE; i++)
+    {
+        printf("%d ", values[i]);
     }
+
     printf("\n");
-    printf("Total Sum: %d\n", total);
-    printf("Average: %.2f\n", avg);
+    printf("Total Sum: %d\n", sum);
+    printf("Average: %.2f\n", average);
 
-    return 0;
+    return 0;   
 }
-
