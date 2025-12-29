@@ -1,1 +1,55 @@
+#include <stdio.h>
+
+#define MAX_SIZE 10
+#define UNVISITED 0
+#define VISITED   1
+
+int main() {
+    int numbers[MAX_SIZE];
+    int used[MAX_SIZE];
+    int N;
+
+    for (int i = 0; i < MAX_SIZE; i++) {
+        used[i] = UNVISITED;
+    }
+
+    scanf("%d", &N);
+    if (N < 1) N = 1;
+    if (N > MAX_SIZE) N = MAX_SIZE;
+
+    for (int i = 0; i < N; i++) {
+        scanf("%d", &numbers[i]);
+    }
+
+    printf("\n--- FREQUENCY ANALYSIS REPORT ---\n");
+    printf("Total elements recorded (N): %d\n", N);
+
+    printf("Recorded Numbers: ");
+    for (int i = 0; i < N; i++) {
+        printf("%d ", numbers[i]);
+    }
+    printf("\n");
+
+    printf("--- FREQUENCY TABLE ---\n");
+    printf("Number | Frequency\n");
+    printf("------ | ---------\n");
+
+    for (int i = 0; i < N; i++) {
+        if (used[i] == VISITED)
+            continue;
+
+        int freq = 1;
+        for (int j = i + 1; j < N; j++) {
+            if (numbers[i] == numbers[j]) {
+                freq++;
+                used[j] = VISITED;
+            }
+        }
+
+        printf("%6d | %d\n", numbers[i], freq);
+        used[i] = VISITED;
+    }
+
+    return 0;
+}
 
