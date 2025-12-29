@@ -1,61 +1,92 @@
 #include <stdio.h>
 
-struct Campaign {
-    char name[50];
-    float productPrice;
-    int salesCount;
-    float adSpend;
+struct Campaign
+{
+    float price;
+    int sales;
+    float ads;
 };
 
-int main() {
-    int N, i;
+float selectRate(int sales)
+{
+    float rate;
 
-    if (scanf("%d", &N) != 1) {
+    rate = 0.10;
+
+    if (sales >= 10)
+    {
+        rate = 0.15;
+    }
+
+    if (sales >= 20)
+    {
+        rate = 0.20;
+    }
+
+    return rate;
+}
+
+float calculateNet(struct Campaign c)
+{
+    float revenue;
+    float commission;
+    float rate;
+    float net;
+
+    revenue = c.price * c.sales;
+    rate = selectRate(c.sales);
+    commission = revenue * rate;
+    net = commission - c.ads;
+
+    return net;
+}
+
+int main(void)
+{
+    int count;
+    int index;
+    float netResult;
+    struct Campaign current;
+    char name[50];
+
+    if (scanf("%d", &count) != 1)
+    {
         return 1;
     }
 
-    struct Campaign campaigns[N];
+    if (count <= 0)
+    {
+        printf("Error\n");
+        return 0;
+    }
 
-    for (i = 0; i < N; i++) {
-        float commissionRate;
-        float totalRevenue;
-        float totalCommission;
-        float netProfitLoss;
-
-        if (scanf("%s %f %d %f",
-                  campaigns[i].name,
-                  &campaigns[i].productPrice,
-                  &campaigns[i].salesCount,
-                  &campaigns[i].adSpend) != 4) {
+    for (index = 0; index < count; index++)
+    {
+        if (scanf("%s", name) != 1)
+        {
             return 1;
         }
 
-        /* คำนวณรายได้รวม */
-        totalRevenue = campaigns[i].salesCount * campaigns[i].productPrice;
-
-        /* เลือกอัตราคอมมิชชัน */
-        if (campaigns[i].salesCount >= 20) {
-            commissionRate = 0.20;
-        } else if (campaigns[i].salesCount >= 10) {
-            commissionRate = 0.15;
-        } else {
-            commissionRate = 0.10;
+        if (scanf("%f", &current.price) != 1)
+        {
+            return 1;
         }
 
-        /* คำนวณคอมมิชชันและกำไร/ขาดทุนสุทธิ */
-        totalCommission = totalRevenue * commissionRate;
-        netProfitLoss = totalCommission - campaigns[i].adSpend;
+        if (scanf("%d", &current.sales) != 1)
+        {
+            return 1;
+        }
 
-        printf("Campaign: %s\n", campaigns[i].name);
-        printf("Sales: %d, Ad Spend: %.2f\n",
-               campaigns[i].salesCount, campaigns[i].adSpend);
-        printf("Rate Used: %.0f%%\n", commissionRate * 100);
-        printf("Calculation: (%.2f * %.0f%%) - %.2f = %.2f\n",
-               totalRevenue, commissionRate * 100,
-               campaigns[i].adSpend, netProfitLoss);
-        printf("Net Result: %.2f\n", netProfitLoss);
+        if (scanf("%f", &current.ads) != 1)
+        {
+            return 1;
+        }
+
+        netResult = calculateNet(current);
+
+        printf("Campaign: %s\n", name);
+        printf("Net Result: %.2f\n", netResult);
     }
 
     return 0;
 }
-
