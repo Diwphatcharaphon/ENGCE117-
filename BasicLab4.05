@@ -1,1 +1,25 @@
+#include <stdio.h>
+
+#define SIZE 6
+
+int main() {
+    int numbers[SIZE];
+    int sum = 0;
+
+    for (int i = 0; i < SIZE; i++) {
+        scanf("%d", &numbers[i]);
+        sum += numbers[i];   
+    }
+
+    printf("\n--- SUMMATION REPORT ---\n");
+    printf("Recorded Numbers: ");
+    for (int i = 0; i < SIZE; i++) {
+        printf("%d ", numbers[i]);
+    }
+    printf("\n");
+
+    printf("Total Sum of Numbers: %d\n", sum);
+
+    return 0;
+}
 
