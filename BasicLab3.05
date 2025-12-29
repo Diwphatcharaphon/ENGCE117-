@@ -2,64 +2,70 @@
 
 struct Order
 {
-    int itemId;        // รหัสสินค้า
-    float unitPrice;   // ราคาต่อชิ้น
-    int quantity;      // จำนวน
+    int itemId;
+    float price;
+    int amount;
 };
-float calculateItemTotal(struct Order order)
+
+/* คำนวณราคารวมของ 1 คำสั่งซื้อ */
+float computeTotal(float price, int amount)
 {
-    float total;
-    const float SHIPPING_FEE = 50.0;
+    float result;
+    float shipping;
 
-    total = order.unitPrice * order.quantity;
+    shipping = 50.0;
+    result = price * amount;
+    result = result + shipping;
 
-    total = total + SHIPPING_FEE;
-
-    if (total >= 500.0)
+    if (result >= 500.0)
     {
-        total = total * 0.90;
+        result = result * 0.90;
     }
 
-    return total;
-}
-
-void readOrders(struct Order list[], int count)
-{
-    int i;
-
-    for (i = 0; i < count; i++)
-    {
-        scanf("%d %f %d",
-              &list[i].itemId,
-              &list[i].unitPrice,
-              &list[i].quantity);
-    }
+    return result;
 }
 
 int main(void)
 {
-    int N;
-    int i;
-    float grandTotal = 0.0;
+    int orderCount;
+    int index;
+    float grandTotal;
+    struct Order currentOrder;
 
-    if (scanf("%d", &N) != 1)
+    grandTotal = 0.0;
+
+    if (scanf("%d", &orderCount) != 1)
     {
         return 1;
     }
 
-    if (N <= 0)
+    if (orderCount <= 0)
     {
         printf("Error\n");
         return 0;
     }
 
-    struct Order orders[N];
-
-    readOrders(orders, N);
-
-    for (i = 0; i < N; i++)
+    for (index = 0; index < orderCount; index++)
     {
-        grandTotal = grandTotal + calculateItemTotal(orders[i]);
+        if (scanf("%d", &currentOrder.itemId) != 1)
+        {
+            return 1;
+        }
+
+        if (scanf("%f", &currentOrder.price) != 1)
+        {
+            return 1;
+        }
+
+        if (scanf("%d", &currentOrder.amount) != 1)
+        {
+            return 1;
+        }
+
+        grandTotal = grandTotal + computeTotal(
+            currentOrder.price,
+            currentOrder.amount
+        );
     }
 
     printf("Grand Total: %.2f\n", grandTotal);
