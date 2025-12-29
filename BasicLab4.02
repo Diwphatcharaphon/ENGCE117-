@@ -1,1 +1,31 @@
+#include <stdio.h>
+
+int main() {
+    int totalStudents;
+    int sumPass = 0;
+    int countFail = 0;
+
+    if (scanf("%d", &totalStudents) != 1) {
+        return 1;
+    }
+
+    int marks[totalStudents];
+
+    for (int idx = 0; idx < totalStudents; idx++) {
+        if (scanf("%d", &marks[idx]) != 1) {
+            return 1;
+        }
+
+        if (marks[idx] >= 50) {
+            sumPass += marks[idx];
+        } else {
+            countFail++;
+        }
+    }
+
+    printf("Passing Scores Sum: %d\n", sumPass);
+    printf("Failing Students Count: %d\n", countFail);
+
+    return 0;
+}
 
