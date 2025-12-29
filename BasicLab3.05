@@ -1,1 +1,43 @@
+#include <stdio.h>
+
+struct Order {
+    int itemId;
+    float unitPrice;
+    int quantity;
+};
+
+int main(void) {
+    int N;
+    float grandTotal = 0.0;
+    const float SHIPPING_FEE = 50.0;
+
+    if (scanf("%d", &N) != 1)
+        return 1;
+
+    struct Order orders[N];
+    int idx = 0;
+
+    while (idx < N) {
+        float itemTotal;
+
+        if (scanf("%d %f %d",
+                  &orders[idx].itemId,
+                  &orders[idx].unitPrice,
+                  &orders[idx].quantity) != 3) {
+            return 1;
+        }
+
+        itemTotal = orders[idx].unitPrice * orders[idx].quantity;
+        itemTotal += SHIPPING_FEE;
+
+        if (itemTotal >= 500.0)
+            itemTotal *= 0.90;   // ลด 10%
+
+        grandTotal += itemTotal;
+        idx++;
+    }
+
+    printf("Grand Total: %.2f\n", grandTotal);
+    return 0;
+}
 
