@@ -1,1 +1,45 @@
+#include <stdio.h>
+
+int main(void) {
+    int N_DAYS, day = 1;
+    float initialBudget, remainingBudget;
+    float dailySpend;
+
+    if (scanf("%f %d", &initialBudget, &N_DAYS) != 2)
+        return 1;
+
+    remainingBudget = initialBudget;
+
+    puts("Day | Spend | Remaining");
+    puts("----------------------------------");
+
+    while (day <= N_DAYS) {
+
+        if (remainingBudget > 0.0) {
+            if (remainingBudget >= 500.0)
+                dailySpend = 100.0;
+            else if (remainingBudget >= 100.0)
+                dailySpend = 50.0;
+            else
+                dailySpend = 20.0;
+        } else {
+            dailySpend = 0.0;
+        }
+
+        if (dailySpend > remainingBudget)
+            dailySpend = remainingBudget;
+
+        remainingBudget -= dailySpend;
+
+        printf("%d | %.2f | %.2f\n",
+               day, dailySpend, remainingBudget);
+
+        day++;
+    }
+
+    puts("----------------------------------");
+    printf("Final Budget: %.2f\n", remainingBudget);
+
+    return 0;
+}
 
