@@ -1,41 +1,36 @@
 #include <stdio.h>
 
-struct Student {
-    char name[50];
-    int studentId;
+int main(void)
+{
+    int id;
+    int count = 0;
+
     float score;
-};
+    float sumScore = 0.0;
 
-int main(void) {
-    int N;
+    char name[50];
 
-    if (scanf("%d", &N) != 1)
-        return 1;
-
-    struct Student students[N];
-    int idx = 0;
-
-    /* รับข้อมูลนักศึกษา */
-    while (idx < N) {
-        if (scanf("%d %f %s",
-                  &students[idx].studentId,
-                  &students[idx].score,
-                  students[idx].name) != 3) {
+    while (scanf("%d", &id) == 1)
+    {
+        if (scanf("%f", &score) != 1)
+        {
             return 1;
         }
-        idx++;
+
+        if (scanf("%s", name) != 1)
+        {
+            return 1;
+        }
+
+        sumScore = sumScore + score;
+        count++;
     }
 
-    /* แสดงผล */
-    idx = 0;
-    while (idx < N) {
-        printf("ID: %d, Name: %s, Score: %.2f\n",
-               students[idx].studentId,
-               students[idx].name,
-               students[idx].score);
-        idx++;
+    if (count > 0)
+    {
+        printf("Average Score: %.2f\n", sumScore / count);
+        printf("%d\n", count);
     }
 
     return 0;
 }
-
