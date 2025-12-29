@@ -1,1 +1,45 @@
+#include <stdio.h>
+
+struct Student {
+    char name[50];
+    int studentId;
+    float score;
+};
+
+int main(void) {
+    int N;
+    int pass = 0, fail = 0;
+
+    if (scanf("%d", &N) != 1)
+        return 1;
+
+    struct Student students[N];
+    int idx = 0;
+
+    /* รับข้อมูล */
+    while (idx < N) {
+        if (scanf("%d %f %s",
+                  &students[idx].studentId,
+                  &students[idx].score,
+                  students[idx].name) != 3) {
+            return 1;
+        }
+        idx++;
+    }
+
+    /* ตรวจสอบผ่าน / ไม่ผ่าน */
+    idx = 0;
+    while (idx < N) {
+        if (students[idx].score >= 60.0)
+            pass++;
+        else
+            fail++;
+        idx++;
+    }
+
+    printf("Pass Count: %d\n", pass);
+    printf("Fail Count: %d\n", fail);
+
+    return 0;
+}
 
