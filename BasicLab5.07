@@ -1,1 +1,49 @@
+#include <stdio.h>
+
+struct Employee
+{
+    int id;             
+    int base_salary;    
+    int bonus;         
+};
+
+int computeNetIncome(int income)
+{
+    int tax_amount;
+
+    if (income > 30000)
+    {
+        tax_amount = income * 10 / 100;   
+    }
+    else
+    {
+        tax_amount = income * 5 / 100;    
+    }
+
+    return income - tax_amount;
+}
+
+int main()
+{
+    struct Employee worker;   
+    int total_income;         
+    int net_income;          
+
+    scanf("%d", &worker.id);
+    scanf("%d", &worker.base_salary);
+    scanf("%d", &worker.bonus);
+
+    total_income = worker.base_salary + worker.bonus;
+
+    net_income = computeNetIncome(total_income);
+
+    printf("--- EMPLOYEE SALARY REPORT ---\n");
+    printf("ID: %d\n", worker.id);
+    printf("Base Salary: %d\n", worker.base_salary);
+    printf("Bonus: %d\n", worker.bonus);
+    printf("Total Income: %d\n", total_income);
+    printf("Net Income: %d\n", net_income);
+
+    return 0;  
+}
 
