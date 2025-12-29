@@ -1,74 +1,42 @@
 #include <stdio.h>
 
-struct Order
+typedef struct {
+    int id;
+    float unitPrice;
+    int qty;
+} Order;
+
+/* ฟังก์ชันคำนวณราคาสุทธิ */
+float calculateCost(float price, int qty)
 {
-    int itemId;
-    float price;
-    int amount;
-};
+    float total = (price * qty) + 50.0;
 
-/* คำนวณราคารวมของ 1 คำสั่งซื้อ */
-float computeTotal(float price, int amount)
-{
-    float result;
-    float shipping;
-
-    shipping = 50.0;
-    result = price * amount;
-    result = result + shipping;
-
-    if (result >= 500.0)
-    {
-        result = result * 0.90;
+    if (total >= 500.0) {
+        total -= total * 0.10;
     }
 
-    return result;
+    return total;
 }
 
 int main(void)
 {
-    int orderCount;
-    int index;
-    float grandTotal;
-    struct Order currentOrder;
+    int n, i;
+    float sum = 0.0;
+    Order ord;
 
-    grandTotal = 0.0;
-
-    if (scanf("%d", &orderCount) != 1)
-    {
-        return 1;
-    }
-
-    if (orderCount <= 0)
-    {
+    if (scanf("%d", &n) != 1 || n <= 0) {
         printf("Error\n");
         return 0;
     }
 
-    for (index = 0; index < orderCount; index++)
-    {
-        if (scanf("%d", &currentOrder.itemId) != 1)
-        {
+    for (i = 0; i < n; i++) {
+        if (scanf("%d %f %d", &ord.id, &ord.unitPrice, &ord.qty) != 3) {
             return 1;
         }
 
-        if (scanf("%f", &currentOrder.price) != 1)
-        {
-            return 1;
-        }
-
-        if (scanf("%d", &currentOrder.amount) != 1)
-        {
-            return 1;
-        }
-
-        grandTotal = grandTotal + computeTotal(
-            currentOrder.price,
-            currentOrder.amount
-        );
+        sum += calculateCost(ord.unitPrice, ord.qty);
     }
 
-    printf("Grand Total: %.2f\n", grandTotal);
-
+    printf("Grand Total: %.2f\n", sum);
     return 0;
 }
