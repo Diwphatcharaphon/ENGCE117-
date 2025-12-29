@@ -1,43 +1,68 @@
 #include <stdio.h>
 
-struct Order {
-    int itemId;
-    float unitPrice;
-    int quantity;
+struct Order
+{
+    int itemId;        // รหัสสินค้า
+    float unitPrice;   // ราคาต่อชิ้น
+    int quantity;      // จำนวน
 };
-
-int main(void) {
-    int N;
-    float grandTotal = 0.0;
+float calculateItemTotal(struct Order order)
+{
+    float total;
     const float SHIPPING_FEE = 50.0;
 
+    total = order.unitPrice * order.quantity;
+
+    total = total + SHIPPING_FEE;
+
+    if (total >= 500.0)
+    {
+        total = total * 0.90;
+    }
+
+    return total;
+}
+
+void readOrders(struct Order list[], int count)
+{
+    int i;
+
+    for (i = 0; i < count; i++)
+    {
+        scanf("%d %f %d",
+              &list[i].itemId,
+              &list[i].unitPrice,
+              &list[i].quantity);
+    }
+}
+
+int main(void)
+{
+    int N;
+    int i;
+    float grandTotal = 0.0;
+
     if (scanf("%d", &N) != 1)
+    {
         return 1;
+    }
+
+    if (N <= 0)
+    {
+        printf("Error\n");
+        return 0;
+    }
 
     struct Order orders[N];
-    int idx = 0;
 
-    while (idx < N) {
-        float itemTotal;
+    readOrders(orders, N);
 
-        if (scanf("%d %f %d",
-                  &orders[idx].itemId,
-                  &orders[idx].unitPrice,
-                  &orders[idx].quantity) != 3) {
-            return 1;
-        }
-
-        itemTotal = orders[idx].unitPrice * orders[idx].quantity;
-        itemTotal += SHIPPING_FEE;
-
-        if (itemTotal >= 500.0)
-            itemTotal *= 0.90;   // ลด 10%
-
-        grandTotal += itemTotal;
-        idx++;
+    for (i = 0; i < N; i++)
+    {
+        grandTotal = grandTotal + calculateItemTotal(orders[i]);
     }
 
     printf("Grand Total: %.2f\n", grandTotal);
+
     return 0;
 }
-
