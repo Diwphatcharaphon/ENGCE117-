@@ -1,39 +1,38 @@
 #include <stdio.h>
 
-// ฟังก์ชันคำนวณผลรวมและผลคูณของสองจำนวน
-void calculate_sum_product(int num1, int num2, int *sum_ptr, int *prod_ptr) {
-    *sum_ptr = num1 + num2;      // เก็บผลรวมในตัวแปรที่ส่งมา
-    *prod_ptr = num1 * num2;     // เก็บผลคูณในตัวแปรที่ส่งมา
+void computeSumAndProduct(int firstNum, int secondNum, int *sumResult, int *productResult) {
+    if (sumResult != NULL) {
+        *sumResult = firstNum + secondNum;  
+    }
+    if (productResult != NULL) {
+        *productResult = firstNum * secondNum; 
+    }
 }
 
 int main() {
-    int val_A, val_B;           // ตัวแปรเก็บค่าจำนวนเต็มผู้ใช้ป้อน
-    int result_sum;             // ตัวแปรเก็บผลรวม
-    int result_product;         // ตัวแปรเก็บผลคูณ
+    int numberA;           
+    int numberB;          
+    int sumValue;          
+    int productValue;       
 
-    // รับค่าจำนวนเต็มตัวแรก
-    printf("Enter first integer (Val A): ");
-    if (scanf("%d", &val_A) != 1) {
-        printf("Invalid input!\n");
+    printf("Please enter the first integer: ");
+    if (scanf("%d", &numberA) != 1) {
+        printf("Error: Invalid input.\n");
         return 1;
     }
 
-    // รับค่าจำนวนเต็มตัวที่สอง
-    printf("Enter second integer (Val B): ");
-    if (scanf("%d", &val_B) != 1) {
-        printf("Invalid input!\n");
+    printf("Please enter the second integer: ");
+    if (scanf("%d", &numberB) != 1) {
+        printf("Error: Invalid input.\n");
         return 1;
     }
 
-    // คำนวณผลรวมและผลคูณโดยใช้ฟังก์ชัน
-    calculate_sum_product(val_A, val_B, &result_sum, &result_product);
+    computeSumAndProduct(numberA, numberB, &sumValue, &productValue);
 
-    // แสดงผลลัพธ์
-    printf("\n--- CALCULATION REPORT ---\n");
-    printf("Input Values: A = %d, B = %d\n", val_A, val_B);
-    printf("----\n");
-    printf("Result Sum (A + B): %d\n", result_sum);
-    printf("Result Product (A * B): %d\n", result_product);
+    printf("\n=== CALCULATION REPORT ===\n");
+    printf("Input Numbers: %d and %d\n", numberA, numberB);
+    printf("Sum: %d\n", sumValue);
+    printf("Product: %d\n", productValue);
 
     return 0;
 }
