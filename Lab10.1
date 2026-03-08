@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+long calculateSumLoop(int limit);
+long calculateSumRecursive(int number);
+
+int main() {
+
+    int testValue = 10;
+
+    printf("Loop method result = %ld\n", calculateSumLoop(testValue));
+    printf("Recursive method result = %ld\n", calculateSumRecursive(testValue));
+
+    printf("Recursive test (100000) = %ld\n", calculateSumRecursive(100000));
+
+    return 0;
+}
+
+
+/* =========================
+   Sum using loop method
+   ========================= */
+long calculateSumLoop(int limit) {
+
+    long totalSum = 0;
+
+    for(int counter = 1; counter <= limit; counter++) {
+
+        totalSum = totalSum + counter;
+
+    }
+
+    return totalSum;
+
+}
+
+
+/* =========================
+   Sum using recursion
+   ========================= */
+long calculateSumRecursive(int number) {
+
+    if(number <= 0) {
+
+        return 0;
+
+    }
+
+    if(number == 1) {
+
+        return 1;
+
+    }
+
+    return number + calculateSumRecursive(number - 1);
+
+}
