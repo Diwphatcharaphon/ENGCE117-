@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+long SumLoop(int n);
+long SumRecur(int n);
+
+int main() {
+
+    printf("SumLoop(10) = %ld\n", SumLoop(10));
+    printf("SumRecur(10) = %ld\n", SumRecur(10));
+
+    // ทดลองค่า n สูง ๆ
+    printf("SumRecur(100000) = %ld\n", SumRecur(100000));
+
+    return 0;
+}
+
+// ใช้การวนรอบ
+long SumLoop(int n){
+    long sum = 0;
+    for(int i = 1; i <= n; i++){
+        sum += i;
+    }
+    return sum;
+}
+
+// ใช้การเรียกตัวเอง (Recursion)
+long SumRecur(int n){
+    if(n == 1)
+        return 1;
+    else
+        return n + SumRecur(n-1);
+}
